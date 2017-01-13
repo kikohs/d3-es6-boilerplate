@@ -1,0 +1,12 @@
+@import 'colors';
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#myrect {
+  fill: $color-primary-2;
+  opacity: 0.8;
+}
