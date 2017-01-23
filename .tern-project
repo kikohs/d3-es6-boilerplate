@@ -1,10 +1,5 @@
 {
-    "libs": [
-        "browser",
-        "d3",
-        "jquery",
-        "lodash"
-            ],
-        "plugins": {
-        }
+    "libs": ["browser"],
+    "plugins": {}
+    
 }
