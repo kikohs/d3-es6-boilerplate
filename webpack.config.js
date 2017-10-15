@@ -14,7 +14,6 @@ module.exports = {
   },
   devtool: 'source-map',
   entry: [
-    'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8080',
     path.resolve(__dirname, 'app/main.js')
   ],
@@ -34,18 +33,26 @@ module.exports = {
         }
       },
       { test: /\.css$/, include: path.resolve(__dirname, 'app'), loader: 'style-loader!css-loader' },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap')},
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader?sourceMap!sass-loader?sourceMap'})},
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-  },
-  sassLoader: {
-    includePaths: [ 'app/style' ]
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
-    new ExtractTextPlugin('main.css'),
+    new ExtractTextPlugin({filename: 'main.css'}),
     new webpack.HotModuleReplacementPlugin(),
     new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        sassLoader: {
+          includePaths: [ 'app/style' ]
+        },
+        context: path.join(__dirname, 'src'),
+        output: {
+          path: path.join(__dirname, 'www')
+    }
+      }
+    })
   ]
 };
