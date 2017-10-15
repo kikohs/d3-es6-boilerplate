@@ -32,3 +32,11 @@ body {
   stroke: #000;
   shape-rendering: crispEdges;
 }
+
+#viz {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}

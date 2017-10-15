@@ -25,6 +25,10 @@ function buildCircleChart() {
 }
 
 // Main
+const vizDiv = document.getElementById("viz");
+
+const barChartWidth = vizDiv.clientWidth;
+const barChartHeight = vizDiv.clientHeight;
 d3.select('#viz').remove();
-makeBarChart('viz', d3.range(10));
+makeBarChart('viz', d3.range(10), barChartWidth, barChartHeight);
 // buildCircleChart();
