@@ -8,11 +8,9 @@ import makeBarChart from './bar';  // name is irrelevant since it is a default e
 require('./main.scss');  // will build CSS from SASS 3 file
 
 // eslint-disable-next-line no-unused-vars
-function buildCircleChart() {
+function buildCircleChart(chartWidth, chartHeight) {
   // Dataset
   const dataset = d3.range(20);
-  const chartWidth = 600;
-  const chartHeight = 400;
 
   const svg = d3.select('#viz')
                 .append('svg')
@@ -27,8 +25,8 @@ function buildCircleChart() {
 // Main
 const vizDiv = document.getElementById("viz");
 
-const barChartWidth = vizDiv.clientWidth;
-const barChartHeight = vizDiv.clientHeight;
-d3.select('#viz').remove();
-makeBarChart('viz', d3.range(10), barChartWidth, barChartHeight);
-// buildCircleChart();
+const chartWidth = vizDiv.clientWidth;
+const chartHeight = vizDiv.clientHeight;
+// d3.select('#viz').remove();
+window.addEventListener('resize', makeBarChart('viz', d3.range(10), chartWidth, chartHeight));
+// buildCircleChart(chartWidth, chartHeight);
